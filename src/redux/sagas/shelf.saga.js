@@ -10,8 +10,20 @@ function* fetchShelf() {
     }
 }
 
+function* deleteItem(action) {
+    try {
+        yield axios.delete(`/api/shelf/${action.payload}`);
+
+        yield put({type: 'FETCH_SHELF'})
+        
+    }catch (error) {
+        console.log('Error:', error);
+    }
+}
+
 function* shelfSaga() {
-    yield takeLatest('FETCH_SHELF', fetchShelf)
+    yield takeLatest('FETCH_SHELF', fetchShelf);
+    yield takeLatest('DELETE_ITEM', deleteItem);
 }
 
 export default shelfSaga;
