@@ -31,6 +31,7 @@ function ShelfForm() {
         event.preventDefault();
         if (newItem.description && newItem.image_url) {
             dispatch({ type: 'ADD_ITEM', payload: newItem })
+            setNewItem({ description: '', image_url: '' })
         }
         else {
             alert('Please fill out both inputs!')
