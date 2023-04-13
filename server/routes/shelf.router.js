@@ -14,6 +14,17 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // endpoint functionality
+    const shelfItem = req.body;//this is grabbing the idata from the input field
+    const userId = req.user.id;//this is grtabbing the correct user id 
+
+    const queryText = `INSERT INTO "item" (description, image_url, user_id)
+      VALUES ($1, $2, $3)`;//below is sending the query text, and the 2 props from the item table, abd user id is the third prop for the table
+      pool.query(queryText, [shelfItem.description, shelfItem.image_url, userId])
+      .then(() => res.sendStatus(201))
+      .catch(error => {
+        console.log('add item post failed', error);
+        res.sendStatus(500);
+      })
 });
 
 /**
