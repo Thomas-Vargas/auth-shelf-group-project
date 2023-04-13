@@ -16,6 +16,6 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    postSaga()
+    postSaga()//this goes to the postItem  file and talks to postSaga at the bottom of that file
   ]);
 }
