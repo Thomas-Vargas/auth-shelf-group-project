@@ -58,7 +58,8 @@ function ShelfList() {
                                 <input value={newImage} onChange={(event)=> setNewImage(event.target.value)}></input>
                                 <button onClick={()=>updateItem(item.id)}>Save changes</button>
                             </div>: <button onClick ={()=> addInputField(item)}>edit</button>}
-                            <button>Delete Me</button>
+                            <button onClick={() => dispatch({type: 'DELETE_ITEM', payload: item.id})}>Delete Me</button>
+
                         </div>
                     ) : (
                         <></>
@@ -72,38 +73,7 @@ function ShelfList() {
 
     return <ul>{render()}</ul>;
 
-  const shelf = useSelector((store) => store.shelfReducer);
-  const user = useSelector((store) => store.user);
-  console.log(shelf);
-  console.log("User:", user);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch({ type: "FETCH_SHELF" });
-  }, []);
-
-  const render = () => {
-    return shelf.length ? (
-      shelf.map((item) => (
-        <li key={item.id}>
-          {item.description}
-          <img src={item.image_url} />
-          {item.user_id === user.id ? (
-            <div>
-              <button>Edit</button>
-              <button onClick={() => dispatch({type: 'DELETE_ITEM', payload: item.id})}>Delete Me</button>
-            </div>
-          ) : (
-            <></>
-          )}
-        </li>
-      ))
-    ) : (
-      <li>Page loading...</li>
-    );
-  };
-
-  return <ul>{render()}</ul>;
 
 }
 

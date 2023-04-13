@@ -17,7 +17,7 @@ function* editShelf(action){
         yield put({type: 'FETCH_SHELF'})//this is a dispatch
     }catch(error){
         console.log(error)
-
+    }}
 function* deleteItem(action) {
     try {
         yield axios.delete(`/api/shelf/${action.payload}`);
@@ -34,8 +34,6 @@ function* shelfSaga() {
 
     yield takeLatest('FETCH_SHELF', fetchShelf)
     yield takeLatest('EDIT_SHELF_ITEM', editShelf)
-
-    yield takeLatest('FETCH_SHELF', fetchShelf);
     yield takeLatest('DELETE_ITEM', deleteItem);
 
 }
