@@ -21,7 +21,7 @@ function ShelfList() {
           {item.user_id === user.id ? (
             <div>
               <button>Edit</button>
-              <button>Delete Me</button>
+              <button onClick={() => dispatch({type: 'DELETE_ITEM', payload: item.id})}>Delete Me</button>
             </div>
           ) : (
             <></>
