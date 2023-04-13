@@ -29,8 +29,12 @@ function ShelfForm() {
 
     const postItem = event => {
         event.preventDefault();
-        dispatch({ type: 'ADD_ITEM', payload: newItem })
-
+        if (newItem.description && newItem.image_url) {
+            dispatch({ type: 'ADD_ITEM', payload: newItem })
+        }
+        else {
+            alert('Please fill out both inputs!')
+        }
     }
 
 

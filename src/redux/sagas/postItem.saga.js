@@ -5,7 +5,7 @@ function* postItem(action) {
     console.log('inside postitem saga',action.payload)
     try {
         yield axios.post('/api/shelf', action.payload)
-        //the yield put goes here
+        yield put({type: 'FETCH_SHELF'})
     }catch(error){
         console.log('error', error)
     }
