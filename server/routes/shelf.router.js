@@ -8,7 +8,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   pool
-    .query(`SELECT * FROM "item"`)
+    .query(`SELECT * FROM "item" ORDER BY id`)
     .then((result) => {
       res.send(result.rows);
     })
@@ -58,6 +58,24 @@ router.delete('/:id', (req, res) => {
  */
 router.put('/:id', (req, res) => {
   // endpoint functionality
+  const updatedItem = req.body;//this is the action.payload from shelf saga
+  const itemId = req.params.id;//this is from the api/shelf/${action.payload.id} from shelf saga
+  console.log('req.body',req.body)
+  console.log('id',req.params.id)
+
+  const queryText = `UPDATE item SET "description" = $1 , "image_url" = $2 WHERE id=$3`
+  pool
+  .query(queryText, [updatedItem.description, updatedItem.image_url, itemId])
+  .then((result) => {
+    res.sendStatus(200);
+  
+  })
+  .catch(error => {
+    console.log(error)
+  })
+
+
+
 });
 
 /**
