@@ -4,8 +4,8 @@
 This application simulates looking at items on a shelf. A user can register to the app and sign in with their credentials. Once signed in a user can see items displayed on the shelf from all the users. This app also gives the user the ability to edit or delete one of their posts they've made
 
 ## Screenshots
+<img src="./public/images/testshot.jpeg" />
 
-<img src="./public/images/screenShot.jpeg" />
 <img src="./public/images/screenshotone.jpeg" />
 
 
