@@ -24,17 +24,17 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.post('/', (req, res) => {
   // endpoint functionality
-    const shelfItem = req.body;//this is grabbing the idata from the input field
-    const userId = req.user.id;//this is grtabbing the correct user id 
+  const shelfItem = req.body;//this is grabbing the idata from the input field
+  const userId = req.user.id;//this is grtabbing the correct user id 
 
-    const queryText = `INSERT INTO "item" (description, image_url, user_id)
+  const queryText = `INSERT INTO "item" (description, image_url, user_id)
       VALUES ($1, $2, $3)`;//below is sending the query text, and the 2 props from the item table, abd user id is the third prop for the table
-      pool.query(queryText, [shelfItem.description, shelfItem.image_url, userId])
-      .then(() => res.sendStatus(201))
-      .catch(error => {
-        console.log('add item post failed', error);
-        res.sendStatus(500);
-      })
+  pool.query(queryText, [shelfItem.description, shelfItem.image_url, userId])
+    .then(() => res.sendStatus(201))
+    .catch(error => {
+      console.log('add item post failed', error);
+      res.sendStatus(500);
+    })
 });
 
 /**
@@ -42,6 +42,15 @@ router.post('/', (req, res) => {
  */
 router.delete('/:id', (req, res) => {
   // endpoint functionality
+  const idToDelete = req.params.id;
+  console.log('req.params.id:', idToDelete);
+  const queryText = `DELETE FROM "item" WHERE id=$1`;
+  pool.query(queryText, [idToDelete])
+    .then(() => res.sendStatus(200))
+    .catch(error => {
+      console.log('Error:', error);
+      res.sendStatus(500);
+    })
 });
 
 /**
