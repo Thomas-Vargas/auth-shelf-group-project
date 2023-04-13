@@ -10,8 +10,18 @@ function* fetchShelf() {
     }
 }
 
+function* editShelf(action){
+    try{
+        yield axios.put(`/api/shelf/${action.payload.id}`, action.payload)//this is a actual put request
+        yield put({type: 'FETCH_SHELF'})//this is a dispatch
+    }catch(error){
+        console.log(error)
+    }
+}
+
 function* shelfSaga() {
     yield takeLatest('FETCH_SHELF', fetchShelf)
+    yield takeLatest('EDIT_SHELF_ITEM', editShelf)
 }
 
 export default shelfSaga;
