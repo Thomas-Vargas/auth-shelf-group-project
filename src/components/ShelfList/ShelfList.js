@@ -15,7 +15,7 @@ function ShelfList() {
         <ul>
             {shelf.length ? 
                 shelf.map(item => (
-                    <li>
+                    <li key={item.id}>
                         {item.description}
                         <img src={item.image_url}/>
                     </li>
