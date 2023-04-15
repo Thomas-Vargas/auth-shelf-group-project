@@ -11,7 +11,7 @@ import shelfReducer from './shelf.reducer';
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
-  user, // will have an id and username if someone is logged in
+  user, // will have an id and username if someone is logged 
   shelfReducer,
 });
 
